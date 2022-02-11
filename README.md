@@ -1,2 +1,2 @@
 # GLFramework
-OpenGL objective framework for C++20.
+OpenGL object-oriented framework for C++20.
