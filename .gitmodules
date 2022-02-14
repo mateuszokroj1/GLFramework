@@ -1,0 +1,10 @@
+[submodule "libs/glad"]
+	path = libs/glad
+	url = https://github.com/arrayfire/glad
+[submodule "libs/glfw"]
+	path = libs/glfw
+	url = https://github.com/glfw/glfw.git
+	branch = 3.3-stable
+[submodule "tests/libs/gtest"]
+	path = tests/libs/gtest
+	url = https://github.com/google/googletest.git
