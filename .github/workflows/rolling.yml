@@ -1,0 +1,48 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Rolling build
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main, feature/*, fix/*, release/*, Architecture ]
+  pull_request:
+    branches: none
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    name: Build for Windows
+    
+    # The type of runner that the job will run on
+    runs-on: windows-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+        name: Checkout Git
+        with:
+          submodules: recursive
+          
+      - name: Setup VS Dev Environment
+        # You may pin to the exact commit or the version.
+        # uses: seanmiddleditch/gha-setup-vsdevenv@adf16e54e207da0da148c8901a98a34d7aa3eb7a
+        uses: seanmiddleditch/gha-setup-vsdevenv@v4
+
+      - name: get-cmake
+        # You may pin to the exact commit or the version.
+        # uses: lukka/get-cmake@f9881bde497b750f306f2a71dae9bc9fe92279d1
+        uses: lukka/get-cmake@v3.22.2
+      
+      - name: CMake configure
+        run: cmake --preset Debug
+        
+      - name: CMake build
+        working-directory: out/build
+        run: cmake --build .
