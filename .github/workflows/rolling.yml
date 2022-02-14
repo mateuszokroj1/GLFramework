@@ -29,12 +29,12 @@ jobs:
         name: Checkout Git
         with:
           submodules: recursive
-          
+    
       - name: Setup VS Dev Environment
         # You may pin to the exact commit or the version.
         # uses: seanmiddleditch/gha-setup-vsdevenv@adf16e54e207da0da148c8901a98a34d7aa3eb7a
         uses: seanmiddleditch/gha-setup-vsdevenv@v4
-
+        
       - name: get-cmake
         # You may pin to the exact commit or the version.
         # uses: lukka/get-cmake@f9881bde497b750f306f2a71dae9bc9fe92279d1
