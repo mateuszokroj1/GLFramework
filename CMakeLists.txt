@@ -4,6 +4,9 @@ add_subdirectory(libs)
 
 project(GLFramework C CXX)
 
+	option(GLFramework_SharedBuild "Build to dynamic library" ON)
+	option(GLFramework_BuildTests "Build test project" OFF)
+
 	set(CXX_STANDARD 20)
 
 	set(GLFramework_Sources "")
@@ -12,12 +15,21 @@ project(GLFramework C CXX)
 		list(APPEND GLFramework_Sources ${child})
 	ENDFOREACH()
 
-	add_library(${PROJECT_NAME} SHARED ${GLFramework_Sources})
+	if(GLFramework_SharedBuild)
+		add_library(${PROJECT_NAME} SHARED ${GLFramework_Sources})
+		include(GenerateExportHeader)
+		generate_export_header(${PROJECT_NAME})
+		target_include_directories(${PROJECT_NAME} PRIVATE ${PROJECT_BINARY_DIR})
+	else()
+		add_library(${PROJECT_NAME} ${GLFramework_Sources})
+	endif()
 
 	target_include_directories(${PROJECT_NAME} PUBLIC include)
 	target_link_libraries(${PROJECT_NAME} PRIVATE glad_interface PRIVATE glfw)
-
-	option(GLFramework_BuildTests "Build test project" OFF)
+	
 	if(GLFramework_BuildTests)
 		add_subdirectory(tests)
 	endif()
+
+install(TARGETS ${PROJECT_NAME} DESTINATION lib)
+install(FILES GLFramework.h DESTINATION include)

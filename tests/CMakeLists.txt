@@ -1,11 +1,6 @@
-
+project(GLFramework.Tests)
 
 add_subdirectory(libs/gtest)
-
-if(WIN32)
-	# For Windows: Prevent overriding the parent project's compiler/linker settings
-	set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-endif()
 
 enable_testing()
 
@@ -15,12 +10,15 @@ set(GLFramework_Tests "")
 		list(APPEND GLFramework_Tests ${child})
 	ENDFOREACH()
 
-link_directories(../)
+add_executable(${PROJECT_NAME} ${GLFramework_Tests})
 
-add_executable(${PROJECT_NAME}.Tests ${GLFramework_Tests})
+	target_link_libraries(${PROJECT_NAME} GLFramework GTest::gtest_main)
 
-	target_link_libraries(${PROJECT_NAME}.Tests GLFramework GTest::gtest_main)
+	if(WIN32)
+	# For Windows: Prevent overriding the parent project's compiler/linker settings
+		set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+	endif()
 
 	include(GoogleTest)
 
-	gtest_discover_tests(${PROJECT_NAME}.Tests)
+	gtest_discover_tests(${PROJECT_NAME})
