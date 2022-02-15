@@ -40,10 +40,10 @@ jobs:
         run: cmake --preset Debug
         
       - name: CMake build Debug
-        run: cd out/build/Debug | cmake --build
+        run: cmake --build out/build/Debug
           
       - name: Test
-        run: cd out/build/Debug/tests | ctest
+        run: ctest out/build/Debug/tests
         
       - name: Remove
         continue-on-error: true
@@ -53,7 +53,7 @@ jobs:
         run: cmake --preset Release
         
       - name: CMake build Release
-        run: cd out/build/Release | cmake --build .
+        run: cmake --build out/build/Release
         
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2.3.1
