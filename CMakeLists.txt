@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 3.14)
 
+set(CMAKE_STATIC_LIBRARY_PREFIX "")
+set(CMAKE_SHARED_LIBRARY_PREFIX "")
+
 add_subdirectory(libs)
 
 project(GLFramework C CXX)
@@ -32,4 +35,4 @@ project(GLFramework C CXX)
 	endif()
 
 install(TARGETS ${PROJECT_NAME} DESTINATION lib)
-install(FILES GLFramework.h DESTINATION include)
+install(DIRECTORY include DESTINATION include)
