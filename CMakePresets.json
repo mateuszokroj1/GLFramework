@@ -14,6 +14,8 @@
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
         "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}",
+        "CMAKE_CXX_COMPILER": "cl.exe",
+        "CMAKE_C_COMPILER": "cl.exe",
         "GLFramework_SharedBuild": false,
         "GLFramework_BuildTests": true
       }
@@ -31,6 +33,8 @@
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release",
         "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}",
+        "CMAKE_CXX_COMPILER": "cl.exe",
+        "CMAKE_C_COMPILER": "cl.exe",
         "GLFramework_SharedBuild": true,
         "GLFramework_BuildTests": false
       }
