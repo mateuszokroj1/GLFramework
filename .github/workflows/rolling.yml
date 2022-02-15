@@ -17,6 +17,8 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   build:
+    name: Build for Windows
+    
     # The type of runner that the job will run on
     runs-on: windows-latest
 
@@ -32,11 +34,6 @@ jobs:
         # You may pin to the exact commit or the version.
         # uses: lukka/get-cmake@f9881bde497b750f306f2a71dae9bc9fe92279d1
         uses: lukka/get-cmake@v3.22.2
-    
-      - name: Setup MSBuild
-        uses: microsoft/setup-msbuild@v1.1
-        with:
-          msbuild-architecture: x64
       
       - name: CMake configure
         run: cmake --preset Debug
@@ -44,4 +41,4 @@ jobs:
       - name: CMake build
         run: |
           cd out/build/Debug |
-          cmake --build
+          cmake --build .
