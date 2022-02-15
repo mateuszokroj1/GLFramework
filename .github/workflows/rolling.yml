@@ -39,4 +39,4 @@ jobs:
         run: cmake --preset Debug
         
       - name: CMake build
-        run: cd out/build/Debug | cmake --build .
+        run: cmake --build out/build/Debug
