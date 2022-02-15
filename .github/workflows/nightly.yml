@@ -38,19 +38,13 @@ jobs:
         run: cmake --preset Debug
         
       - name: CMake build Debug
-        run: |
-          cd out/build/Debug |
-          cmake --build
+        run: cd out/build/Debug | cmake --build
           
       - name: Test
-        run: |
-          cd out/build/Debug/tests |
-          ctest
+        run: cd out/build/Debug/tests | ctest
 
       - name: CMake configure
         run: cmake --preset Release
         
       - name: CMake build Release
-        run: |
-          cd out/build/Release |
-          cmake --build
+        run: cd out/build/Release | cmake --build .
