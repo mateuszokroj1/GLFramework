@@ -6,7 +6,7 @@ name: Nightly build
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: none
+    branches: [ Architecture ]
   pull_request:
     branches: [ main, release/* ]
     paths-ignore: '.github/'
