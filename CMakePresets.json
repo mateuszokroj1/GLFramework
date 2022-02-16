@@ -21,7 +21,7 @@
     {
       "name": "Release",
       "displayName": "x64 Release",
-      "description": "Default debugging profile.",
+      "description": "Release profile.",
       "generator": "Ninja",
       "binaryDir": "${sourceDir}/out/build/${presetName}",
       "architecture": {

@@ -45,7 +45,7 @@ jobs:
         run: cmake --build out/build/Debug
           
       - name: Test
-        run: ctest out/build/Debug/tests
+        run: cd out/build/Debug/tests | ctest
         
       - name: Remove
         continue-on-error: true
