@@ -18,8 +18,8 @@ on:
 
 env:
   BuildDir: 'out/build'
-  DebugBuildDir: 	${{ env.BuildDir }}/Debug
-  ReleaseBuildDir: ${{ env.BuildDir }}/Release
+  DebugBuildDir: 	'$BUILDDIR/Debug'
+  ReleaseBuildDir: '$BUILDDIR/Release'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
