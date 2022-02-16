@@ -93,6 +93,17 @@ jobs:
         working-directory: ${{ env.BuildDir }}/tests
         run: ctest
         
+      - name: Remove
+        continue-on-error: true
+        run: Remove-Item ${{ env.BuildDir }} -recurse
+
+      - name: CMake configure
+        run: cmake --preset Release
+        
+      - name: CMake build Release
+        working-directory: ${{ env.ReleaseBuildDir }}
+        run: cmake --build .
+        
       - name: CMake Install Project
         working-directory: ${{ env.BuildDir }}
         run: cmake --install .
