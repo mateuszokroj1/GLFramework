@@ -58,9 +58,9 @@ jobs:
         run: cmake --build out/build/Release
         
       - name: CMake Install Project
-        run: cmake --install .
+        run: cmake --install out/build/Release
         
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2.3.1
         with:
-          path: 'out/install'
+          path: 'out/install/Release'

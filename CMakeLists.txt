@@ -1,8 +1,5 @@
 cmake_minimum_required(VERSION 3.14)
 
-set(CMAKE_STATIC_LIBRARY_PREFIX "")
-set(CMAKE_SHARED_LIBRARY_PREFIX "")
-
 add_subdirectory(libs)
 
 project(GLFramework C CXX)
@@ -30,9 +27,32 @@ project(GLFramework C CXX)
 	target_include_directories(${PROJECT_NAME} PUBLIC include)
 	target_link_libraries(${PROJECT_NAME} PRIVATE glad_interface PRIVATE glfw)
 	
+	SET_TARGET_PROPERTIES(${PROJECT_NAME} PROPERTIES PREFIX "")
+
 	if(GLFramework_BuildTests)
 		add_subdirectory(tests)
 	endif()
 
-install(TARGETS ${PROJECT_NAME} DESTINATION lib)
-install(DIRECTORY include DESTINATION include)
+install(TARGETS ${PROJECT_NAME} EXPORT GLFrameworkTargets
+	LIBRARY DESTINATION lib
+	ARCHIVE DESTINATION lib
+	RUNTIME DESTINATION bin
+	INCLUDES DESTINATION include
+	FILES glframework_export.h DESTINATION include
+)
+
+include(CMakePackageConfigHelpers)
+export(EXPORT GLFrameworkTargets
+	FILE "${CMAKE_CURRENT_BINARY_DIR}/cmake/GLFrameworkTargets.cmake"
+)
+configure_file(cmake/GLFrameworkConfig.cmake
+	"${CMAKE_CURRENT_BINARY_DIR}/cmake/GLFrameworkConfig.cmake"
+	COPY_ONLY
+)
+
+install(FILES
+	cmake/GLFrameworkConfig.cmake
+	"${CMAKE_CURRENT_BINARY_DIR}/cmake/GLFrameworkTargets.cmake"
+	DESTINATION
+	cmake/
+)
