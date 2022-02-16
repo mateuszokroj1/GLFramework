@@ -27,32 +27,35 @@ project(GLFramework C CXX)
 	target_include_directories(${PROJECT_NAME} PUBLIC include)
 	target_link_libraries(${PROJECT_NAME} PRIVATE glad_interface PRIVATE glfw)
 	
-	SET_TARGET_PROPERTIES(${PROJECT_NAME} PROPERTIES PREFIX "")
+	set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "")
 
 	if(GLFramework_BuildTests)
 		add_subdirectory(tests)
 	endif()
 
-install(TARGETS ${PROJECT_NAME} EXPORT GLFrameworkTargets
-	LIBRARY DESTINATION lib
-	ARCHIVE DESTINATION lib
-	RUNTIME DESTINATION bin
-	INCLUDES DESTINATION include
-	FILES glframework_export.h DESTINATION include
-)
+if(GLFramework_SharedBuild)
 
-include(CMakePackageConfigHelpers)
-export(EXPORT GLFrameworkTargets
-	FILE "${CMAKE_CURRENT_BINARY_DIR}/cmake/GLFrameworkTargets.cmake"
-)
-configure_file(cmake/GLFrameworkConfig.cmake
-	"${CMAKE_CURRENT_BINARY_DIR}/cmake/GLFrameworkConfig.cmake"
-	COPY_ONLY
-)
+	install(TARGETS ${PROJECT_NAME} EXPORT GLFrameworkTargets
+		LIBRARY DESTINATION lib
+		ARCHIVE DESTINATION lib
+		RUNTIME DESTINATION bin
+		INCLUDES DESTINATION include
+		FILES glframework_export.h DESTINATION include
+	)
 
-install(FILES
-	cmake/GLFrameworkConfig.cmake
-	"${CMAKE_CURRENT_BINARY_DIR}/cmake/GLFrameworkTargets.cmake"
-	DESTINATION
-	cmake/
-)
+	include(CMakePackageConfigHelpers)
+	export(EXPORT GLFrameworkTargets
+		FILE "${CMAKE_CURRENT_BINARY_DIR}/cmake/GLFrameworkTargets.cmake"
+	)
+	configure_file(cmake/GLFrameworkConfig.cmake
+		"${CMAKE_CURRENT_BINARY_DIR}/cmake/GLFrameworkConfig.cmake"
+	)
+
+	install(FILES
+		cmake/GLFrameworkConfig.cmake
+		"${CMAKE_CURRENT_BINARY_DIR}/cmake/GLFrameworkTargets.cmake"
+		DESTINATION
+		cmake/
+	)
+
+endif()
