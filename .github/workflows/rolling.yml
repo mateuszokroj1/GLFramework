@@ -39,4 +39,5 @@ jobs:
         run: cmake --preset Debug
         
       - name: CMake build
-        run: cmake --build out/build/Debug
+        working-directory: out/build/Debug
+        run: cmake --build .
