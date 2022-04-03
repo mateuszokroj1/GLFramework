@@ -4,35 +4,16 @@
     {
       "name": "Debug",
       "displayName": "x64 Debug",
-      "description": "Default debugging profile.",
+      "description": "Default build profile.",
       "generator": "Ninja",
-      "binaryDir": "${sourceDir}/out/build/${presetName}",
+      "binaryDir": "${sourceDir}/out/build",
       "architecture": {
         "value": "x64",
         "strategy": "external"
       },
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
-        "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}",
-        "GLFramework_SharedBuild": false,
-        "GLFramework_BuildTests": true
-      }
-    },
-    {
-      "name": "Release",
-      "displayName": "x64 Release",
-      "description": "Release profile.",
-      "generator": "Ninja",
-      "binaryDir": "${sourceDir}/out/build/${presetName}",
-      "architecture": {
-        "value": "x64",
-        "strategy": "external"
-      },
-      "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Release",
-        "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}",
-        "GLFramework_SharedBuild": true,
-        "GLFramework_BuildTests": false
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install"
       }
     }
   ]
