@@ -10,23 +10,16 @@ add_subdirectory(tests)
 
 project(GLFramework C CXX)
 
-	option(GLFramework_SharedBuild "Build to dynamic library" ON)
-	option(GLFramework_BuildTests "Build test project" OFF)
-
 	set(CXX_STANDARD 20)
 
 	set(GLFramework_Sources
 		src/GLFramework.cpp
 	)
 
-	if(GLFramework_SharedBuild)
-		add_library(${PROJECT_NAME} SHARED ${GLFramework_Sources})
-		include(GenerateExportHeader)
-		generate_export_header(${PROJECT_NAME})
-		target_include_directories(${PROJECT_NAME} PRIVATE ${PROJECT_BINARY_DIR})
-	else()
-		add_library(${PROJECT_NAME} ${GLFramework_Sources})
-	endif()
+	add_library(${PROJECT_NAME} SHARED ${GLFramework_Sources})
+	add_library(src_for_test ${GLFramework_Sources})
+
+	set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 
 	if (WIN32)
 		include (GenerateExportHeader)          
