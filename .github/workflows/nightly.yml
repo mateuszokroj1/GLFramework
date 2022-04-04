@@ -7,6 +7,7 @@ on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches: [ Architecture ]
+    paths: [ '.github/workflows/nightly.yml' ]
   pull_request:
     branches: [ main, release/* ]
     paths-ignore: '.github/'
@@ -18,8 +19,6 @@ on:
 
 env:
   BuildDir: 'out/build'
-  DebugBuildDir: 'out/build/Debug'
-  ReleaseBuildDir: 'out/build/Release'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -48,29 +47,18 @@ jobs:
         run: cmake --preset Debug
         
       - name: CMake build Debug
-        working-directory: ${{ env.DebugBuildDir }}
+        working-directory: ${{ env.BuildDir }}
         run: cmake --build .
           
       - name: Test
-        working-directory: ${{ env.DebugBuildDir }}/tests
+        working-directory: ${{ env.BuildDir }}/tests
         run: ctest
         
-      - name: Remove
-        continue-on-error: true
-        run: Remove-Item ${{ env.BuildDir }} -recurse
-
-      - name: CMake configure
-        run: cmake --preset Release
-        
-      - name: CMake build Release
-        working-directory: ${{ env.ReleaseBuildDir }}
-        run: cmake --build .
-        
       - name: CMake Install Project
-        working-directory: ${{ env.ReleaseBuildDir }}
+        working-directory: ${{ env.BuildDir }}
         run: cmake --install .
         
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2.3.1
         with:
-          path: ${{ env.ReleaseBuildDir }}
+          path: ${{ env.BuildDir }}
