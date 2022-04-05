@@ -13,6 +13,8 @@ project(GLFramework C CXX)
 	set(CXX_STANDARD 20)
 
 	set(GLFramework_Sources
+		src/GLApplication.cpp
+		src/GLWindow.cpp
 		src/GLFramework.cpp
 	)
 

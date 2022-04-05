@@ -1,7 +1,2 @@
-#include "GLFramework_Export.h"
-
-class GLFRAMEWORK_EXPORT GLFramework
-{
-public:
-	const char* Name = "GLFramework";
-};
+#include "GLApplication.h"
+#include "GLWindow.h"
