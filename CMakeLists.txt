@@ -19,12 +19,6 @@ project(GLFramework C CXX)
 	)
 
 	add_library(${PROJECT_NAME} SHARED ${GLFramework_Sources})
-	add_library(src_for_test ${GLFramework_Sources})
-
-	set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 20)
-	set_property(TARGET src_for_test PROPERTY CXX_STANDARD 20)
-
-	set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 
 	if (WIN32)
 		include (GenerateExportHeader)          
@@ -66,5 +60,3 @@ project(GLFramework C CXX)
 		DESTINATION
 		cmake/
 	)
-
-endif()

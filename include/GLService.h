@@ -1,19 +1,20 @@
-
-
 #ifndef GLSERVICE_H
 #define GLSERVICE_H
+
+#include "GLServiceProvider.h"
+#include "GLApplicationBuilder.h"
 
 namespace GLFramework
 {
 	class GLService
 	{
-		//friend class;
+		friend class GLApplicationBuilder;
 
 	private:
 		GLServiceProvider _serviceProvider;
 
 	public:
-		constexpr const GLServiceProvider GetServiceProvider() { return _serviceProvider; }
+		const inline GLServiceProvider GetServiceProvider() const { return _serviceProvider; }
 	};
 }
 

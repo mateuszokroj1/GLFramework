@@ -1,8 +1,8 @@
-#include "GLService.h"
-#include "types.h"
-
 #ifndef GLSERVICEPROVIDER_H
 #define GLSERVICEPROVIDER_H
+
+#include "GLService.h"
+#include "types.h"
 
 namespace GLFramework
 {

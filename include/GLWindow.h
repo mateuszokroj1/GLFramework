@@ -1,7 +1,9 @@
 #ifndef GLWINDOW_H
 #define GLWINDOW_H
 
-class GLWindow
+#include "GLFramework_Export.h"
+
+class GLFRAMEWORK_EXPORT GLWindow
 {
 	friend class GLApplication;
 };
