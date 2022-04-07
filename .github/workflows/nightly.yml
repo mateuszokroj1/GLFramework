@@ -49,15 +49,15 @@ jobs:
         uses: lukka/get-cmake@v3.22.2
       
       - name: CMake configure
-        run: cmake --preset Debug
+        run: cmake --preset x64-default
         
       - name: CMake build Debug
         working-directory: ${{ env.BuildDir }}
         run: cmake --build .
           
       - name: Test
-        working-directory: ${{ env.BuildDir }}/tests
-        run: ctest
+        working-directory: ${{ env.BuildDir }}
+        run: ctest .
         
       - name: CMake Install Project
         working-directory: ${{ env.BuildDir }}
