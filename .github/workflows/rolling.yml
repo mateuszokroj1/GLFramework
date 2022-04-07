@@ -41,7 +41,7 @@ jobs:
         uses: lukka/get-cmake@v3.22.2
       
       - name: CMake configure
-        run: cmake --preset Debug
+        run: cmake --preset x64-default
         
       - name: CMake build
         working-directory: out/build
